@@ -951,6 +951,8 @@ services:
 
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.
+  default:
+    driver: bridge
   ssrf_proxy_network:
     driver: bridge
     internal: true
