@@ -713,7 +713,7 @@ services:
                -c 'maintenance_work_mem=${POSTGRES_MAINTENANCE_WORK_MEM:-64MB}'
                -c 'effective_cache_size=${POSTGRES_EFFECTIVE_CACHE_SIZE:-4096MB}'
     volumes:
-      - ./volumes/db/data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     healthcheck:
       test:
         [
@@ -738,7 +738,7 @@ services:
       REDISCLI_AUTH: ${REDIS_PASSWORD:-qBFv50i82442wOIX}
     volumes:
       # Mount the redis data directory to the container.
-      - ./volumes/redis/data:/data
+      - redis_data:/data
     # Set the redis password when startup redis server.
     command: redis-server --requirepass ${REDIS_PASSWORD:-qBFv50i82442wOIX}
     healthcheck:
@@ -964,3 +964,5 @@ networks:
 volumes:
   oradata:
   dify_es01_data:
+  redis_data:
+  db_data:
