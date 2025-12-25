@@ -790,8 +790,6 @@ services:
   # The PostgreSQL database.
   db_postgres:
     image: api.matoapp.net:5000/postgres:15-alpine
-    profiles:
-      - postgresql
     restart: always
     environment:
       POSTGRES_USER: ${DB_USERNAME:-postgres}
