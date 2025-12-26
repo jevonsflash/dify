@@ -671,7 +671,7 @@ services:
         chown -R 1001:1001 /app/api/storage && touch "$${FLAG_FILE}"
         echo "Permissions initialized. Exiting."
     volumes:
-      - ./volumes/app/storage:/app/api/storage
+      - app_data:/app/api/storage
     restart: "no"
 
   # API service
@@ -701,7 +701,7 @@ services:
         condition: service_started
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - ./volumes/app/storage:/app/api/storage
+      - app_data:/app/api/storage
     networks:
       - ssrf_proxy_network
       - default
@@ -731,7 +731,7 @@ services:
         condition: service_started
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - init_permissions:/app/api/storage
+      - app_data:/app/api/storage
     networks:
       - ssrf_proxy_network
       - default
@@ -1060,4 +1060,4 @@ volumes:
   dify_es01_data:
   redis_data:
   db_data:
-  init_permissions:
+  app_data:
